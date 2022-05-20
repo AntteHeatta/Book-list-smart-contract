@@ -51,8 +51,8 @@ contract booklistContract {
     function addBook(string memory _bookName) public {
         if(checkIfBookExists(_bookName)) { //Checks for duplicates
             if(checkBookIdLenght(_bookName)) { //Checks that bookId lenght > 0
-                counter[msg.sender]++;
-                myBookList[msg.sender].push(booklistStruct(
+                counter[msg.sender]++;  //Adds +1 to counter
+                myBookList[msg.sender].push(booklistStruct( //Adds the values to the booklistStruct
                     counter[msg.sender],
                     _bookName,
                     block.timestamp
