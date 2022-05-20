@@ -3,11 +3,11 @@ pragma solidity >=0.4.0 <0.9.0;
 
 contract booklistContract {
 
-    //This smart contract application is used to save and fetch books.
+    //This smart contract application is used to save and fetch book titles.
 
     //The data structure for the items stored in the blockchain
     struct booklistStruct {
-        uint bookId;        //Each book will have its own unique ID starting from 0
+        uint bookId;        //Each book title will have its own unique ID starting from 0
         string bookName;    //Name of the book set by the user (must be unique, duplicates not allowed)
         uint timestamp;     //Timestamp of book saved
     }
