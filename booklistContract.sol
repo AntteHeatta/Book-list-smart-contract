@@ -8,8 +8,8 @@ contract booklistContract {
     //The data structure for the items stored in the blockchain
     struct booklistStruct {
         uint bookId;        //Each book title will have its own unique ID starting from 0
-        string bookName;    //Name of the book set by the user (must be unique, duplicates not allowed)
-        uint timestamp;     //Timestamp of book saved
+        string bookTitle;   //Name of the book set by the user (must be unique, duplicates not allowed)
+        uint timestamp;     //Timestamp of book title saved
     }
 
     //Mapping for user data
@@ -18,7 +18,7 @@ contract booklistContract {
 
     //Get methods for retrieving data
     function getName(uint bookId) public view returns (string memory) {
-        return myBookList[msg.sender][bookId].bookName;
+        return myBookList[msg.sender][bookId].bookTitle;
     }
     function getTime (uint bookId) public view returns (uint) {
         return myBookList[msg.sender][bookId].timestamp;
@@ -28,9 +28,9 @@ contract booklistContract {
     }
 
     //Funtion compares the hash values of given bookId and the bookId's in myBookList to prevent finding same bookId
-    function checkIfBookExists(string memory _bookName) private view returns (bool) {
+    function checkIfBookExists(string memory _bookTitle) private view returns (bool) {
         for (uint i = 0; i < myBookList[msg.sender].length; i++) {
-            if(keccak256(abi.encodePacked(_bookName)) == keccak256(abi.encodePacked(myBookList[msg.sender][i].bookName))) {
+            if(keccak256(abi.encodePacked(_bookTitle)) == keccak256(abi.encodePacked(myBookList[msg.sender][i].bookTitle))) {
                 return false;
             }
         }
@@ -38,9 +38,9 @@ contract booklistContract {
     }
 
     //Funtion to check if given bookId lenght is zero. 
-    function checkBookIdLenght(string memory _bookName) private pure returns (bool) {
-        bytes memory tempBookName = bytes(_bookName);
-        if(tempBookName.length == 0) {
+    function checkBookIdLenght(string memory _bookTitle) private pure returns (bool) {
+        bytes memory tempbookTitle = bytes(_bookTitle);
+        if(tempbookTitle.length == 0) {
             return false;
         } else {
             return true;
@@ -48,13 +48,13 @@ contract booklistContract {
     }
 
     //Function for storing the books on the blockchain
-    function addBook(string memory _bookName) public {
-        if(checkIfBookExists(_bookName)) { //Checks for duplicates
-            if(checkBookIdLenght(_bookName)) { //Checks that bookId lenght > 0
+    function addBook(string memory _bookTitle) public {
+        if(checkIfBookExists(_bookTitle)) { //Checks for duplicates
+            if(checkBookIdLenght(_bookTitle)) { //Checks that bookId lenght > 0
                 counter[msg.sender]++;  //Adds +1 to counter
                 myBookList[msg.sender].push(booklistStruct( //Adds the values to the booklistStruct
                     counter[msg.sender],
-                    _bookName,
+                    _bookTitle,
                     block.timestamp
                 ));
             }
