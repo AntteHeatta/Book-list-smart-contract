@@ -1,7 +1,8 @@
 # Book-list-smart-contract
 Exercise to a course "Blockchain Development with Smart Contracts" <br><br>
 
-This smart contract application saves user's books to the blockchain, where they can be fetched when needed.<br><br>
+This smart contract application saves user's book titles to the blockchain, where they can be fetched when needed.<br><br>
+
 How to run: <br>
 1. Go to remix.ethereum.org <br>
 2. On file explorers, open contracts-folder <br>
